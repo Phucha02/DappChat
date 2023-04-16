@@ -44,7 +44,7 @@
       .once(async (data, id) => {
         if (data) {
           // Key for end-to-end encryption
-          const key = '#foo';
+          const key = '#this_is_encrypted';
 
           var message = {
             // transform the data
@@ -53,7 +53,7 @@
             when: GUN.state.is(data, 'what'), // get the internal timestamp for the what property.
           };
 
-          if (message.what) {
+          if (message.what !== 'undefined') {
             messages = [...messages.slice(-100), message].sort((a, b) => a.when - b.when);
             if (canAutoScroll) {
               autoScroll();
@@ -66,7 +66,7 @@
   });
 
   async function sendMessage() {
-    const secret = await SEA.encrypt(newMessage, '#foo');
+    const secret = await SEA.encrypt(newMessage, '#this_is_encrypted');
     const message = user.get('all').set({ what: secret });
     const index = new Date().toISOString();
     db.get('chat').get(index).put(message);
