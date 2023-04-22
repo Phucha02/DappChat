@@ -4,12 +4,12 @@
   let username;
   let password;
 
-  function login() {
-    user.auth(username, password, ({ err }) => err && alert(err));
+  async function login() {
+    await user.auth(username, password, ({ err }) => err && alert(err));
   }
 
-  function signup() {
-    user.create(username, password, ({ err }) => {
+  async function signup() {
+    await user.create(username, password, ({ err }) => {
       if (err) {
         alert(err);
       } else {

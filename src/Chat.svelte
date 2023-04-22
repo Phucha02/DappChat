@@ -67,7 +67,7 @@
 
   async function sendMessage() {
     const secret = await SEA.encrypt(newMessage, '#this_is_encrypted');
-    const message = user.get('all').set({ what: secret });
+    const message = user.get('all').set({ what: secret});
     const index = new Date().toISOString();
     db.get('chat').get(index).put(message);
     newMessage = '';
